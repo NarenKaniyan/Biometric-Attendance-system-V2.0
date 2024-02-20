@@ -1,10 +1,11 @@
-$(document).ready(function(){
+$(document).ready(function() {
+  const $alert = $('#alert'); // Cache the selector once
+
   // Add user Fingerprint
   $(document).on('click', '.fingerid_add', function(){
+    let fingerid = $('#fingerid').val();
+    let dev_id = $('#dev_sel option:selected').val();
 
-    var fingerid = $('#fingerid').val();
-    var dev_id = $('#dev_sel option:selected').val();
-    
     $.ajax({
       url: 'manage_users_conf.php',
       type: 'POST',
@@ -14,50 +15,36 @@ $(document).ready(function(){
         'dev_id': dev_id,
       },
       success: function(response){
-        if (response == "1") {
-          $('#dev_sel').val('0');
-          $('#fingerid').val('');
-
-          $('#finger_id').val('');
-          $('#dev_id').val('');
-          $('#name').val('');
-          $('#number').val('');
-          $('#email').val('');
-
-          $('#gender').val('');
-
-          $('#alert').fadeIn(500);
-          $('#alert').text("The ID is ready to get a new Fingerprint");
-        }
-        else{
-          $('#alert').fadeIn(500);
-          $('#alert').text(response);
+        if (response === "1") {
+          $('#dev_sel, #fingerid, #finger_id, #dev_id, #name, #number, #email, #gender').val('');
+          $alert.fadeIn(500).text("The ID is ready to get a new Fingerprint");
+        } else {
+          $alert.fadeIn(500).text(response);
         }
 
         setTimeout(function () {
-            $('#alert').fadeOut(500);
+          $alert.fadeOut(500);
         }, 6000);
-        
+
         $.ajax({
-          url: "manage_users_up.php"
-          }).done(function(data) {
-          $('#manage_users').html(data);
+          url: "manage_users_up.php",
+          success: function(data) {
+            $('#manage_users').html(data);
+          }
         });
       }
     });
   });
+
   // Add user
   $(document).on('click', '.user_add', function(){
-    //user Info
-    var finger_id = $('#finger_id').val();
-    var dev_uid = $('#dev_id').val();
+    let finger_id = $('#finger_id').val();
+    let dev_uid = $('#dev_id').val();
+    let name = $('#name').val();
+    let number = $('#number').val();
+    let email = $('#email').val();
+    let gender = $(".gender:checked").val();
 
-    var name = $('#name').val();
-    var number = $('#number').val();
-    var email = $('#email').val();
-    //Additional Info
-    var gender = $(".gender:checked").val();
-    
     $.ajax({
       url: 'manage_users_conf.php',
       type: 'POST',
@@ -71,46 +58,35 @@ $(document).ready(function(){
         'gender': gender,
       },
       success: function(response){
-        if (response == "1") {
-          $('#finger_id').val('');
-          $('#dev_id').val('');
-          $('#name').val('');
-          $('#number').val('');
-          $('#email').val('');
-
-          $('#dev_sel').val('0');
-          $('#gender').val('');
-
-          $('#alert').fadeIn(500);
-          $('#alert').text("A new User has been added!");
+        if (response === "1") {
+          $('#finger_id, #dev_id, #name, #number, #email, #dev_sel, #gender').val('');
+          $alert.fadeIn(500).text("A new User has been added!");
+        } else {
+          $alert.fadeIn(500).text(response);
         }
-        else{
-          $('#alert').fadeIn(500);
-          $('#alert').text(response);
-        }
-        
+
         setTimeout(function () {
-            $('#alert').fadeOut(500);
+          $alert.fadeOut(500);
         }, 5000);
-        
+
         $.ajax({
-          url: "manage_users_up.php"
-          }).done(function(data) {
-          $('#manage_users').html(data);
+          url: "manage_users_up.php",
+          success: function(data) {
+            $('#manage_users').html(data);
+          }
         });
       }
     });
   });
+
   // Update user
   $(document).on('click', '.user_upd', function(){
-    //user Info
-    var finger_id = $('#finger_id').val();
-    var dev_uid = $('#dev_id').val();
-
-    var name = $('#name').val();
-    var number = $('#number').val();
-    var email = $('#email').val();
-    var gender = $(".gender:checked").val();
+    let finger_id = $('#finger_id').val();
+    let dev_uid = $('#dev_id').val();
+    let name = $('#name').val();
+    let number = $('#number').val();
+    let email = $('#email').val();
+    let gender = $(".gender:checked").val();
 
     $.ajax({
       url: 'manage_users_conf.php',
@@ -125,52 +101,40 @@ $(document).ready(function(){
         'gender': gender,
       },
       success: function(response){
-        if (response == "1") {
-          $('#finger_id').val('');
-          $('#dev_id').val('');
-          $('#name').val('');
-          $('#number').val('');
-          $('#email').val('');
-
-          $('#dev_sel').val('0');
-          $('#gender').val('');
-
-          $('#alert').fadeIn(500);
-          $('#alert').text("The selected User has been updated!");
+        if (response === "1") {
+          $('#finger_id, #dev_id, #name, #number, #email, #dev_sel, #gender').val('');
+          $alert.fadeIn(500).text("The selected User has been updated!");
+        } else {
+          $alert.fadeIn(500).text(response);
         }
-        else{
-          $('#alert').fadeIn(500);
-          $('#alert').text(response);
-        }
-        
+
         setTimeout(function () {
-            $('#alert').fadeOut(500);
+          $alert.fadeOut(500);
         }, 5000);
-        
+
         $.ajax({
-          url: "manage_users_up.php"
-          }).done(function(data) {
-          $('#manage_users').html(data);
+          url: "manage_users_up.php",
+          success: function(data) {
+            $('#manage_users').html(data);
+          }
         });
       }
-    });   
+    });
   });
-  // delete user
+
+  // Delete user
   $(document).on('click', '.user_rmo', function(){
+    let finger_id = $('#finger_id').val();
+    let dev_uid = $('#dev_id').val();
 
-    var finger_id = $('#finger_id').val();
-    var dev_uid = $('#dev_id').val();
     if (dev_uid === "") {
-      $('#alert').fadeIn(500);
-      $('#alert').text("There no selected user to remove!!");
-
+      $alert.fadeIn(500).text("There's no selected user to remove!!");
       setTimeout(function () {
-        $('#alert').fadeOut(500);
+        $alert.fadeOut(500);
       }, 5000);
-    }  
-    else{   
+    } else {
       bootbox.confirm("Do you really want to delete this User?", function(result) {
-        if(result){  
+        if(result) {
           $.ajax({
             url: 'manage_users_conf.php',
             type: 'POST',
@@ -180,32 +144,22 @@ $(document).ready(function(){
               'finger_id': finger_id,
             },
             success: function(response){
-              if (response == "1") {
-                $('#finger_id').val('');
-                $('#dev_id').val('');
-                $('#name').val('');
-                $('#number').val('');
-                $('#email').val('');
-
-                $('#dev_sel').val('0');
-                $('#gender').val('');
-
-                $('#alert').fadeIn(500);
-                $('#alert').text("The User Fingerprint has been deleted");
+              if (response === "1") {
+                $('#finger_id, #dev_id, #name, #number, #email, #dev_sel, #gender').val('');
+                $alert.fadeIn(500).text("The User Fingerprint has been deleted");
+              } else {
+                $alert.fadeIn(500).text(response);
               }
-              else{
-                $('#alert').fadeIn(500);
-                $('#alert').text(response);
-              }
-              
+
               setTimeout(function () {
-                  $('#alert').fadeOut(500);
+                $alert.fadeOut(500);
               }, 5000);
-              
+
               $.ajax({
-                url: "manage_users_up.php"
-                }).done(function(data) {
-                $('#manage_users').html(data);
+                url: "manage_users_up.php",
+                success: function(data) {
+                  $('#manage_users').html(data);
+                }
               });
             }
           });
@@ -213,11 +167,12 @@ $(document).ready(function(){
       });
     }
   });
-  // select user
+
+  // Select user
   $(document).on('click', '.select_btn', function(){
-    var el = this;
-    var dev_uid = $(this).attr("name");
-    var finger_id = $(this).data('id');
+    let el = this;
+    let dev_uid = $(this).attr("name");
+    let finger_id = $(this).data('id');
 
     $.ajax({
       url: 'manage_users_conf.php',
@@ -228,52 +183,48 @@ $(document).ready(function(){
         'dev_uid': dev_uid,
       },
       success: function(response){
-
         $(el).closest('tr').css('background','#70c276');
+        $alert.fadeIn(500).text('User Fingerprint selected');
 
-        $('#alert').fadeIn(500);
-        $('#alert').text('User Fingerprint selected');
-        
         setTimeout(function () {
-            $('#alert').fadeOut(500);
+          $alert.fadeOut(500);
         }, 5000);
 
         $.ajax({
-          url: "manage_users_up.php"
-          }).done(function(data) {
-          $('#manage_users').html(data);
+          url: "manage_users_up.php",
+          success: function(data) {
+            $('#manage_users').html(data);
+          }
         });
 
-        console.log(response);
-
-        var user_name = {
+        let user_name = {
           User_name : []
         };
-        var user_on = {
+        let user_on = {
           User_on : []
         };
-        var finger_id = {
+        let finger_id = {
           Finger_id : []
         };
-        var dev_uid = {
+        let dev_uid = {
           Dev_uid : []
         };
-        var user_email = {
+        let user_email = {
           User_email : []
         };
-        var user_gender = {
+        let user_gender = {
           User_gender : []
         };
 
-        var len = response.length;
+        let len = response.length;
 
-        for (var i = 0; i < len; i++) {
-            user_name.User_name.push(response[i].username);
-            user_on.User_on.push(response[i].serialnumber);
-            finger_id.Finger_id.push(response[i].fingerprint_id);
-            dev_uid.Dev_uid.push(response[i].device_uid);
-            user_email.User_email.push(response[i].email);
-            user_gender.User_gender.push(response[i].gender);
+        for (let i = 0; i < len; i++) {
+          user_name.User_name.push(response[i].username);
+          user_on.User_on.push(response[i].serialnumber);
+          finger_id.Finger_id.push(response[i].fingerprint_id);
+          dev_uid.Dev_uid.push(response[i].device_uid);
+          user_email.User_email.push(response[i].email);
+          user_gender.User_gender.push(response[i].gender);
         }
 
         $('#name').val(user_name.User_name);
@@ -282,13 +233,11 @@ $(document).ready(function(){
         $('#dev_id').val(dev_uid.Dev_uid);
         $('#email').val(user_email.User_email);
 
-        if (user_gender.User_gender == 'Female'){
-            $('.form-style-5').find(':radio[name=gender][value="Female"]').prop('checked', true);
+        if (user_gender.User_gender === 'Female'){
+          $('.form-style-5').find(':radio[name=gender][value="Female"]').prop('checked', true);
+        } else {
+          $('.form-style-5').find(':radio[name=gender][value="Male"]').prop('checked', true);
         }
-        else{
-            $('.form-style-5').find(':radio[name=gender][value="Male"]').prop('checked', true);
-        }
-
       },
       error : function(data) {
         console.log(data);
