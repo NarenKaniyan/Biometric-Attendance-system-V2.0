@@ -54,6 +54,7 @@ html {
   width: device-width;
 }
 
+
 article, aside, dialog, figcaption, figure, footer, header, hgroup, main, nav, section {
   display: block;
 }
@@ -64,7 +65,7 @@ body {
   font-size: 1rem;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: rgba(19, 153, 176, 0.33);
   text-align: left;
   background-color: #fff;
 }
@@ -2197,24 +2198,24 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   border-radius: .2rem;
 }
 
-.was-validated .form-control:valid, .form-control.is-valid, .was-validated
+.was-validated, .form-control:valid, .form-control.is-valid, .was-validated,
 .custom-select:valid,
 .custom-select.is-valid {
   border-color: #28a745;
 }
 
-.was-validated .form-control:valid:focus, .form-control.is-valid:focus, .was-validated
+.was-validated, .form-control:valid:focus, .form-control.is-valid:focus, .was-validated,
 .custom-select:valid:focus,
 .custom-select.is-valid:focus {
   border-color: #28a745;
   box-shadow: 0 0 0 0.2rem rgba(40, 167, 69, 0.25);
 }
 
-.was-validated .form-control:valid ~ .valid-feedback,
-.was-validated .form-control:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback,
-.form-control.is-valid ~ .valid-tooltip, .was-validated
+.was-validated, .form-control:valid ~ .valid-feedback,
+.was-validated, .form-control:valid ~ .valid-tooltip, .form-control.is-valid ~ .valid-feedback,
+.form-control.is-valid ~ .valid-tooltip, .was-validated,
 .custom-select:valid ~ .valid-feedback,
-.was-validated
+.was-validated,
 .custom-select:valid ~ .valid-tooltip,
 .custom-select.is-valid ~ .valid-feedback,
 .custom-select.is-valid ~ .valid-tooltip {
@@ -2294,13 +2295,13 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   border-radius: .2rem;
 }
 
-.was-validated .form-control:invalid, .form-control.is-invalid, .was-validated
+.was-validated, .form-control:invalid, .form-control.is-invalid, .was-validated,
 .custom-select:invalid,
 .custom-select.is-invalid {
   border-color: #dc3545;
 }
 
-.was-validated .form-control:invalid:focus, .form-control.is-invalid:focus, .was-validated
+.was-validated, .form-control:invalid:focus, .form-control.is-invalid:focus, .was-validated,
 .custom-select:invalid:focus,
 .custom-select.is-invalid:focus {
   border-color: #dc3545;
@@ -2309,9 +2310,9 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 
 .was-validated .form-control:invalid ~ .invalid-feedback,
 .was-validated .form-control:invalid ~ .invalid-tooltip, .form-control.is-invalid ~ .invalid-feedback,
-.form-control.is-invalid ~ .invalid-tooltip, .was-validated
+.form-control.is-invalid ~ .invalid-tooltip, .was-validated,
 .custom-select:invalid ~ .invalid-feedback,
-.was-validated
+.was-validated,
 .custom-select:invalid ~ .invalid-tooltip,
 .custom-select.is-invalid ~ .invalid-feedback,
 .custom-select.is-invalid ~ .invalid-tooltip {
@@ -4977,8 +4978,8 @@ tbody.collapse.show {
 }
 
 .alert-primary {
-  color: #004085;
-  background-color: #cce5ff;
+  color: #29a142;
+  background-color: #1f6c5a;
   border-color: #b8daff;
 }
 
