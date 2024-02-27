@@ -1,6 +1,6 @@
 h1{
   font-size: 28px !important;
-  color: #000;
+  color: #ffffff;
   text-transform: uppercase;
   font-weight: 300;
   font-family: New Century Schoolbook, TeX Gyre Schola, serif !important;
@@ -20,7 +20,7 @@ tbody button {
 }
 tbody button:hover {
   cursor: pointer;
-  border-bottom: 2px solid #3e9ba8;
+  border-bottom: 2px solid #7ea83e;
   color: black;
 }
 th{
@@ -131,7 +131,7 @@ td{
   cursor: pointer;
 }
 .form-style-5 .number {
-  background: #388994;
+  background: #5b5b5b;
   color: #fff;
   height: 30px;
   width: 30px;
@@ -150,17 +150,17 @@ td{
   padding: 10px 39px 10px 39px;
   color: #FFF;
   margin: 0 auto;
-  background: #388994;
+  background: #000000;
   font-size: 16px;
   text-align: center;
   font-style: normal;
   width: 100%;
-  border: 1px solid #3f9aa6;
+  border: 1px solid #f6f5f5;
   border-width: 1px 1px 3px;
   margin-bottom: 10px;
 }
 .form-style-5 button:hover {
-  background: #3f9aa6;
+  background: #5b5b5b;
   cursor: pointer;
 }
 .form-style-5 .alert {
@@ -240,7 +240,7 @@ td{
   border: none;
   display: block;
   margin: auto;
-  border-bottom: 2px solid #187881;
+  border-bottom: 2px solid #000000;
   color: black;
 }
 #finger_sel:hover {
